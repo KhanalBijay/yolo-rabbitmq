@@ -42,7 +42,7 @@ class Detection:
         if not isExist:
             # Create a new directory because it does not exist
             os.makedirs(outfile_name)
-            
+
         file_name = url.split('/')[-1]
         outfile_name = os.path.join(outfile_name, file_name)
         try:
