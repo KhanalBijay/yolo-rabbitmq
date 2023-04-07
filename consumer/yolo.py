@@ -12,7 +12,12 @@ class Detection:
     def infer_image(self, url, outfile_name):
         # Images
         file_name = url.split('/')[-1]
-        # print(f'file to download {file_name}')
+
+        isExist = os.path.exists(outfile_name)
+        if not isExist:
+            # Create a new directory because it does not exist
+            os.makedirs(outfile_name)
+
         try:
             torch.hub.download_url_to_file(url, file_name)
         except Exception as e:
@@ -33,6 +38,11 @@ class Detection:
         return 1
 
     def infer_video(self, url, outfile_name):
+        isExist = os.path.exists(outfile_name)
+        if not isExist:
+            # Create a new directory because it does not exist
+            os.makedirs(outfile_name)
+            
         file_name = url.split('/')[-1]
         outfile_name = os.path.join(outfile_name, file_name)
         try:
