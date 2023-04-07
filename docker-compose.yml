@@ -1,15 +1,15 @@
-services:  
+services:
   rabbitmq:
     container_name: rabbitmq
-    image: rabbitmq:3.9-management 
+    image: rabbitmq:3.9-management
     ports:
       - 5672:5672
       - 15672:15672
-  
+
   # consumer:
-  #   container_name: consumer 
+  #   container_name: consumer
   #   build:
-  #     dockerfile: consumer/Dockerfile 
+  #     dockerfile: consumer/Dockerfile
   #     context: .
   #   volumes:
   #     - .:/app
