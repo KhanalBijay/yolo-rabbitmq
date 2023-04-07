@@ -6,12 +6,12 @@ import os
 
 class Detection:
     def __init__(self):
-        self.model = YOLO('yolov5s.pt')
+        self.model = YOLO("yolov5s.pt")
         self.model.info(False)
 
     def infer_image(self, url, outfile_name):
         # Images
-        file_name = url.split('/')[-1]
+        file_name = url.split("/")[-1]
 
         isExist = os.path.exists(outfile_name)
         if not isExist:
@@ -43,7 +43,7 @@ class Detection:
             # Create a new directory because it does not exist
             os.makedirs(outfile_name)
 
-        file_name = url.split('/')[-1]
+        file_name = url.split("/")[-1]
         outfile_name = os.path.join(outfile_name, file_name)
         try:
             torch.hub.download_url_to_file(url, file_name)
@@ -55,9 +55,9 @@ class Detection:
         fps = int(stream.get(cv2.CAP_PROP_FPS))
         frame_size = (
             int(stream.get(cv2.CAP_PROP_FRAME_WIDTH)),
-            int(stream.get(cv2.CAP_PROP_FRAME_HEIGHT))
-            )
-        fourcc = cv2.VideoWriter_fourcc(*'MJPG')
+            int(stream.get(cv2.CAP_PROP_FRAME_HEIGHT)),
+        )
+        fourcc = cv2.VideoWriter_fourcc(*"MJPG")
         writer = cv2.VideoWriter(outfile_name, fourcc, fps, frame_size)
 
         while stream.isOpened():
@@ -79,10 +79,10 @@ class Detection:
         return 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     det = Detection()
     # url = 'https://ultralytics.com/images/zidane.jpg'  # batch of images
     # det.infer_image(url, 'output')
 
-    url = 'https://cdn.pixabay.com/vimeo/724673230/lamb-120739.mp4?width=640&expiry=1680862434&hash=8b6cd86cf64d485c24fe1fc298eae5b93a99a900'
-    det.infer_video(url, 'output')
+    url = "https://cdn.pixabay.com/vimeo/724673230/lamb-120739.mp4?width=640&expiry=1680862434&hash=8b6cd86cf64d485c24fe1fc298eae5b93a99a900"  # noqa E501
+    det.infer_video(url, "output")

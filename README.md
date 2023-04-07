@@ -3,7 +3,7 @@
 ### Install python packages
 ` pip install -r requirements.txt `
 
-### To run rabbitmq on docker 
+### To run rabbitmq on docker
 ` docker-compose build `
 ` docker-compose up `
 
